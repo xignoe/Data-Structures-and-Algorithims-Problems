@@ -14,6 +14,23 @@ public class Solution {
 
     // Complete the compareTriplets function below.
     static List<Integer> compareTriplets(List<Integer> a, List<Integer> b) {
+        int aliceScore = 0;
+        int bobScore = 0;
+        
+        for (int i = 0; i < a.size(); i++) {
+            if (a.get(i) > b.get(i)) {
+                aliceScore++;
+            } else if (b.get(i) > a.get(i)) {
+                bobScore++;
+            }
+        }
+        
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(aliceScore);
+        list.add(bobScore);
+
+        return list;
+        
 
 
     }
@@ -43,3 +60,4 @@ public class Solution {
         bufferedWriter.close();
     }
 }
+
