@@ -19,11 +19,3 @@ def main():
     print(find_averages_of_subarrays(5,[1,2,3,4,5,6,7,8]))
 
 main()
-
-
-
-
-
-    
-
-    
