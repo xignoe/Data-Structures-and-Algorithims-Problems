@@ -1,18 +1,26 @@
-def longestSubstring(wordle, k):
-    count = 1
-    subStr = []
-    currentMax = 0
+def longestSubstringKDistinct(word, k):
+    windowStart = 0
+    maxLen = 0
+    charMap = {}
 
-    for i in range(len(wordle)):
-        while wordle[i] != wordle[count] and count < len(wordle):
-            subStr.append(wordle[i])
-            count += 1
-            currentMax = len(subStr)
-        count = i
+    for i in range(len(word)):
+        rightChar = word[i]
+        if rightChar not in charMap:
+            charMap[rightChar] = 0
+        charMap[rightChar] += 1
 
+        #Essentially MAKE the subarray
+        while len(charMap) > k:
+            leftChar = word[windowStart]
+            charMap[leftChar] -= 1
+            if charMap[leftChar] == 0:
+                del charMap[leftChar]
+            windowStart += 1
+        maxLen = max(maxLen, i - windowStart + 1)
     
+    return maxLen
 
-    print(set(wordle))
-    return currentMax
 
-print(longestSubstring("araaci", 2))
+print(longestSubstringKDistinct("araaci", 2))
+print(longestSubstringKDistinct("araaci", 1))
+print(longestSubstringKDistinct("cbbebi", 3))
